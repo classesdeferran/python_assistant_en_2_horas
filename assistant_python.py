@@ -2,6 +2,8 @@ import speech_recognition as sr
 import pyttsx3
 import datetime
 
+nombre_asistente = "Axela"
+
 
 # Función para que escuche la máquina
 def audio_pc():
@@ -83,4 +85,21 @@ def decir_hora():
 
     respuesta_PC(mensaje)
 
-decir_hora()
+# decir_hora()
+
+def saludo_inicial():
+    
+    # hora para establecer el saludo
+    hora = datetime.datetime.now()
+
+    if 6 <= hora.hour < 14:
+        ahora = "Buenos días"
+    elif 14 <= hora.hour < 20:
+        ahora = "Buenos tardes"
+    else:
+        ahora = "Buenas noches"
+
+    respuesta = f"{ahora}, soy {nombre_asistente}. ¿En qué puedo ayudarte?"
+    respuesta_PC(respuesta)
+
+saludo_inicial()
