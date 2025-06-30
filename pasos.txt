@@ -1,0 +1,18 @@
+PASOS PARA EL DESARROLLO DE UN PROYECTO EN PYTHON
+
+1) Creación del entorno virtual:
+python -m venv venv
+
+2) Activar el entorno (ojo a las barras)
+venv\Scripts\activate
+
+3) Importar librerías 
+pip install SpeechRecognition pyaudio pyttsx3
+
+Nota 1:
+Guardar las dependencias en un fichero:
+pip freeze > requirements.txt
+
+Nota 2:
+Para recuperar las dependencias:
+pip install -r requirements.txt
