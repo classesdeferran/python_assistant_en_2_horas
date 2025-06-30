@@ -1,5 +1,6 @@
 import speech_recognition as sr
 import pyttsx3
+import datetime
 
 
 # Función para que escuche la máquina
@@ -38,6 +39,11 @@ def respuesta_PC(texto):
 
         engine = pyttsx3.init()
 
+        # Ajustes de la salida
+        engine.setProperty("rate", 150)
+
+        engine.setProperty("volume", 1)
+
         # preparar la respuesta
         engine.say(texto)
 
@@ -47,4 +53,34 @@ def respuesta_PC(texto):
     except:
         print("error en el texto")
 
-respuesta_PC("Hola, día sábado")
+# Comprobación 
+# respuesta_PC("Hola, día sábado")
+
+def decir_dia_semana ():
+    # obtener el dia
+    dia = datetime.date.today()
+    # print(dia.weekday())
+
+    nombres_dias = {
+        0 : "lunes",
+        1 : "maertes",
+        2 : "miércoles",
+        3 : "jueves",
+        4 : "viernes",
+        5 : "sábado",
+        6 : "domingo"
+    }
+
+    respuesta_PC(f"Hoy es {nombres_dias[dia.weekday()]}")
+
+def decir_hora():
+
+    # variable para la hora
+    hora = datetime.datetime.now()
+    # print(hora)
+
+    mensaje = f"Son las {hora.hour} horas, {hora.minute} minutos y {hora.second} segundos"
+
+    respuesta_PC(mensaje)
+
+decir_hora()
