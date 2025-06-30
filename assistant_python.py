@@ -1,6 +1,9 @@
 import speech_recognition as sr
 import pyttsx3
 import datetime
+import pyjokes
+import pywhatkit 
+import webbrowser
 
 nombre_asistente = "Axela"
 
@@ -14,6 +17,7 @@ def audio_pc():
 
         # demora para dar tiempo a activar el hardware
         r.pause_threshold = 0.5 # entre 0.5 y 0.8
+        r.adjust_for_ambient_noise(source, duration=1)
 
         # mensaje pra saber que podemos empezar a hablar
         print("Esperando ...")
@@ -102,4 +106,43 @@ def saludo_inicial():
     respuesta = f"{ahora}, soy {nombre_asistente}. ¿En qué puedo ayudarte?"
     respuesta_PC(respuesta)
 
-saludo_inicial()
+# saludo_inicial()
+
+def centro_de_peticiones():
+
+    saludo_inicial()
+
+
+    # bucle infinito hasta que lo detengamos
+
+    while True:
+
+        try : 
+            peticion = audio_pc()
+            print (peticion)
+
+            if f"{nombre_asistente} qué día es hoy" in peticion:
+                decir_dia_semana ()
+                continue
+
+            elif f"{nombre_asistente} qué hora es" in peticion:
+                decir_hora()
+                continue
+
+            elif f"cuéntame un chiste" in peticion:
+                respuesta_PC(pyjokes.get_joke('es'))
+                continue
+
+            elif "reproduce" in peticion:
+                respuesta_PC("Qué buen gusto tienes. Reproduciendo.")
+                pywhatkit.playonyt(peticion)
+                continue
+
+            elif f'{nombre_asistente} eso es todo' in peticion or 'fin del programa' in peticion:
+                respuesta_PC("Programa finalizado. Hasta pronto")
+                break
+        except :
+            respuesta_PC("Disculpa, no te he entendido.")
+
+
+centro_de_peticiones()

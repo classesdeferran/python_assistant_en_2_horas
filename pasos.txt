@@ -7,7 +7,7 @@ python -m venv venv
 venv\Scripts\activate
 
 3) Importar librerías 
-pip install SpeechRecognition pyaudio pyttsx3
+pip install SpeechRecognition pyaudio pyttsx3 pyjokes pywhatkit webbrowser
 
 Nota 1:
 Guardar las dependencias en un fichero:
