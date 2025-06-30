@@ -27,7 +27,7 @@ def audio_pc():
 
         try :
 
-            text = r.recognize_google(audio, language="es")
+            text = r.recognize_google(audio, language="es").lower()
 
             print("Has dicho ...", text)
 
@@ -123,6 +123,10 @@ def centro_de_peticiones():
 
             if f"{nombre_asistente} qué día es hoy" in peticion:
                 decir_dia_semana ()
+                continue
+
+            if "abre YouTube" in peticion:
+                webbrowser.open("https://youtube.com")
                 continue
 
             elif f"{nombre_asistente} qué hora es" in peticion:
